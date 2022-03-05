@@ -1,8 +1,10 @@
+package example;
+
 import tableformatter.ColumnEntry;
 import tableformatter.Table;
 import tableformatter.TableFormatter;
 
-public class Example {
+public class Example1 {
     public static void main(String[] args) {
         Table table = new Table(
                 new ColumnEntry("name", "age", "weight"),
