@@ -64,6 +64,6 @@ Table table = new Table(
 
 I hope my TableFormatter is useful to you! It would make me really happy and motivate me if you give my project a star...
 
-You are allowed to fork my project as well!
+You are allowed to fork my project as well.
 
 Enjoy! ;)
