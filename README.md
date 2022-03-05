@@ -1,6 +1,6 @@
 # TableFormatter
 **Hey**, 
-this is a API to get the format for a table in a string: e.g.
+this is a lib to get the format for a table in a string: e.g.
 
 ```
 —————————————————————————
