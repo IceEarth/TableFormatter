@@ -5,26 +5,26 @@ import java.util.List;
 
 public class TableFormatter {
     private final String spacer;
-    private final String columnLeftBracket;
-    private final String columnRightBracket;
-    private final char headerValuesSpacerChar;
-    private final char lineValuesSpaceChar;
+    private final String leftBracket;
+    private final String rightBracket;
+    private final char headerLineChar;
+    private final char lineChar;
     private ColumnEntry[] entries;
 
     public TableFormatter(String spacer, String columnLeftBracket, String columnRightBracket, char headerValuesSpacerChar, char lineValuesSpaceChar) {
         this.spacer = spacer;
-        this.columnLeftBracket = columnLeftBracket;
-        this.columnRightBracket = columnRightBracket;
-        this.headerValuesSpacerChar = headerValuesSpacerChar;
-        this.lineValuesSpaceChar = lineValuesSpaceChar;
+        this.leftBracket = columnLeftBracket;
+        this.rightBracket = columnRightBracket;
+        this.headerLineChar = headerValuesSpacerChar;
+        this.lineChar = lineValuesSpaceChar;
     }
 
     public TableFormatter() {
         this.spacer = " | ";
-        this.columnLeftBracket = "| ";
-        this.columnRightBracket = " |";
-        this.headerValuesSpacerChar = '*';
-        this.lineValuesSpaceChar = '—';
+        this.leftBracket = "| ";
+        this.rightBracket = " |";
+        this.headerLineChar = '*';
+        this.lineChar = '—';
        /* Example:
          lineValuesSpaceChar -->    —————————————————————————
                                     |  name  | age | weight | <-- columnRightBracket
@@ -82,9 +82,9 @@ public class TableFormatter {
 
         for(ColumnEntry entry : entries){
             String firstElement = entry.get(0);
-            entry.setEntry(this.columnLeftBracket + firstElement, 0);
+            entry.setEntry(this.leftBracket + firstElement, 0);
             String lastElement = entry.get(entry.getSize() - 1);
-            entry.setEntry(lastElement + this.columnRightBracket, entry.getSize() - 1);
+            entry.setEntry(lastElement + this.rightBracket, entry.getSize() - 1);
 
             for (int i = 0; i < entry.getSize() - 1; i++) {
                 entry.setEntry(entry.get(i) + this.spacer, i);
@@ -97,17 +97,17 @@ public class TableFormatter {
         StringBuilder builder = new StringBuilder();
         List<ColumnEntry> entries = table.getEntries();
         int longestLength = table.getLongestCharLength();
-        builder.append(String.valueOf(this.lineValuesSpaceChar).repeat(longestLength));
+        builder.append(String.valueOf(this.lineChar).repeat(longestLength));
         builder.append("\n");
         builder.append(entries.get(0).toString());
         builder.append("\n");
-        builder.append(String.valueOf(this.headerValuesSpacerChar).repeat(longestLength));
+        builder.append(String.valueOf(this.headerLineChar).repeat(longestLength));
         builder.append("\n");
         for (int i = 1; i < entries.size(); i++) {
             builder.append(entries.get(i).toString());
             builder.append("\n");
         }
-        builder.append(String.valueOf(this.lineValuesSpaceChar).repeat(longestLength));
+        builder.append(String.valueOf(this.lineChar).repeat(longestLength));
 
         return builder.toString();
     }
