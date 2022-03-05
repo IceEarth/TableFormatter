@@ -35,7 +35,7 @@ Table table = new Table(
 ####2.
 If you want to edit the table-structure (like I already said), you need to fill the values in the constructor of the TableFormatter:
 
-This is the index:
+This is the constructor:
 ```java
 public TableFormatter(String spacer, String columnLeftBracket, String columnRightBracket, char headerValuesSpacerChar, char lineValuesSpaceChar)
 ```
