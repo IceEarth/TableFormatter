@@ -1,5 +1,4 @@
 # TableFormatter
-## test
 **Hey**, 
 this is a library to format _tables_. 
 
@@ -7,9 +6,9 @@ What are you able to do with this lib?
 * **format table to image**
 * **format table to String** 
 
-# Format to Image:
+## Format to Image:
 
-**Code:**
+### Code:
 
 ```java
 Table table = new Table(
@@ -26,29 +25,20 @@ BufferedImage img = formatter.formatToImage(table, new TableImageFormat(
 
 ```
 
-**Output:**
+### Output:
 
 ![](https://s20.directupload.net/images/220306/xijp7tk7.png)
 
 
 
-# **Format to String:**
+## Format to String:
 
 
 
-# *1. Normal Format*
+### 1. Normal Format
 
-**Output:**
-```
-—————————————————————————
-|  name  | age | weight |
-*************************
-| James  | 21  |   75   |
-| Robert | 30  |   84   |
-—————————————————————————
-```
 
-**Code:**
+### Code:
 
 ```java
 Table table = new Table(
@@ -60,8 +50,18 @@ TableFormatter formatter = new TableFormatter();
 System.out.println(formatter.format(table));
 ```
 
+### Output:
+```
+—————————————————————————
+|  name  | age | weight |
+*************************
+| James  | 21  |   75   |
+| Robert | 30  |   84   |
+—————————————————————————
+```
+
                 
-# *2. Adjusted Format*
+## 2. Adjusted Format
 You are also able to edit the spacer, leftBracket, the tightBracket, the headerLineChar and the lineSpaceChar.
 If you are wondering what that could be, here is a short explaination:
 
@@ -71,12 +71,12 @@ If you are wondering what that could be, here is a short explaination:
 
 
 
-**Constructor:**
+### Constructor:
 ```java
 public TableFormatter(String spacer, String columnLeftBracket, String columnRightBracket, char headerValuesSpacerChar, char lineValuesSpaceChar)
 ```
 
-**Code:**
+### Code:
 ```java
 Table table = new Table(
                 new ColumnEntry("name", "age", "weight"),
@@ -89,14 +89,14 @@ System.out.println(formatter.format(table));
 
 ```
 
-**Output:**
+### Output:
 
 ![](https://s20.directupload.net/images/220306/wr73kox6.png)
 
 
 
 
-# _A few last words:_
+## A few last words:
 I hope my TableFormatter is useful to you! It would make me really happy and motivate me if you give my project a star...
 
 You are allowed to fork my project as well.
