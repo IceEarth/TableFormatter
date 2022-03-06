@@ -23,9 +23,11 @@ BufferedImage img = formatter.formatToImage(table, new TableImageFormat(
         Color.orange
         ));
 
+//do something with the image
+
 ```
 
-### Output:
+### Image Output:
 
 ![](https://s20.directupload.net/images/220306/xijp7tk7.png)
 
