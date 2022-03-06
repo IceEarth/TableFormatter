@@ -1,5 +1,9 @@
 package tableformatter;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +13,7 @@ public class TableFormatter {
     private final String rightBracket;
     private final char headerLineChar;
     private final char lineChar;
-    private ColumnEntry[] entries;
+
 
     public TableFormatter(String spacer, String columnLeftBracket, String columnRightBracket, char headerValuesSpacerChar, char lineValuesSpaceChar) {
         this.spacer = spacer;
@@ -43,6 +47,113 @@ public class TableFormatter {
         table.setEntries(insertSpacersAndBrackets(table.getEntries()));
 
         return getFormattedTable(table);
+    }
+
+    public BufferedImage formatToImage(Table table, TableImageFormat tableImageFormat){
+
+
+        table.setEntries(Table.getEntriesHorizontal(table));
+
+        return getTableImage(table, tableImageFormat);
+    }
+
+    private BufferedImage getTableImage(Table table, TableImageFormat tableImageFormat){
+        int spacerLength = 8;
+        int x = 0;
+        int y = 0;
+        int cursorX = 0;
+        int cursorY = 0;
+        int line = 0;
+
+
+
+        BufferedImage dummy = new BufferedImage(1000, 1000, 1);
+        Graphics2D graphics2D = dummy.createGraphics();
+
+        //BufferedImage result = new BufferedImage(getTableWidth(table.getEntries(), spacerLength), table.getEntries().size() * 16, 1);
+        BufferedImage result = new BufferedImage(
+                getTableWidth(table.getEntries(), spacerLength, graphics2D.getFontMetrics()),
+                table.getEntries().size() * 16, 1);
+
+        Graphics2D g2D = result.createGraphics();
+        FontMetrics fontMetrics = g2D.getFontMetrics();
+        g2D.setPaint(tableImageFormat.backgroundColor);
+        g2D.fillRect(0, 0, result.getWidth(), result.getHeight());
+
+
+        int counter = 0;
+
+        for(ColumnEntry entry : table.getEntries()){
+            int longestLength  = fontMetrics.stringWidth(getLongestString(entry, g2D.getFontMetrics()));
+            int rectWidth = getRectWidth(longestLength, spacerLength);
+
+
+            for (int i = 0; i < entry.getSize(); i++){
+                String s = entry.get(i);
+
+                g2D.setPaint(getRectColor(tableImageFormat, i));
+                g2D.fillRect(x, y, rectWidth, 16);
+
+                g2D.setPaint(tableImageFormat.outlineColor);
+                g2D.drawRect(x, y, rectWidth, 16);
+
+                y += 16;
+
+                cursorY = line + 13;
+                cursorX = x + (rectWidth - fontMetrics.stringWidth(s)) / 2;
+
+                g2D.setPaint(tableImageFormat.textColor);
+                g2D.drawString(s, cursorX, cursorY);
+
+                line += 16;
+            }
+            x += rectWidth;
+            y = 0;
+            cursorX = x;
+            line = 0;
+            counter++;
+        }
+
+        g2D.dispose();
+        return result;
+    }
+
+    private Color getRectColor(TableImageFormat format, int counter){
+        if (counter == 0) {
+            return format.headlineFill;
+        }else if(counter == 1){
+            return format.rowFill1;
+        }else if(counter % 2 == 0){
+            return format.rowFill2;
+        }else {
+            return format.rowFill1;
+        }
+    }
+
+    private int getRectWidth(int stringLength, int spacerLength){
+        return spacerLength + stringLength;
+    }
+
+    private int getTableWidth(List<ColumnEntry> entries, int spacerLength, FontMetrics metrics){
+        int xResult = 0;
+        for(ColumnEntry entry : entries){
+            int longestLength  = metrics.stringWidth(getLongestString(entry, metrics));
+            int rectWidth = getRectWidth(longestLength, spacerLength);
+            xResult += rectWidth;
+        }
+
+        return xResult;
+
+    }
+
+    private String getLongestString(ColumnEntry entry, FontMetrics metrics){
+        String result = "";
+        for(String s : entry.getEntries()){
+            if(metrics.stringWidth(result) < metrics.stringWidth(s)){
+                result = s;
+            }
+        }
+        return result;
     }
 
     private String[] adjustLength(String ... strings){
