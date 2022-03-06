@@ -6,9 +6,9 @@ What are you able to do with this lib?
 * **format table to image**
 * **format table to String** 
 
-##Format to Image:
+#Format to Image:
 
-#####Code:
+**Code:**
 
 ```java
 Table table = new Table(
@@ -25,19 +25,19 @@ BufferedImage img = formatter.formatToImage(table, new TableImageFormat(
 
 ```
 
-#####Output:
+**Output:**
 
-![](/home/simon/Schreibtisch/JavaTest/img.png)
-
-
-
-##Format to String:
+![](https://s20.directupload.net/images/220306/xijp7tk7.png)
 
 
 
-###1. Normal Format
+#**Format to String:**
 
-#####Output:
+
+
+#*1. Normal Format*
+
+**Output:**
 ```
 —————————————————————————
 |  name  | age | weight |
@@ -47,7 +47,7 @@ BufferedImage img = formatter.formatToImage(table, new TableImageFormat(
 —————————————————————————
 ```
 
-#####Code:
+**Code:**
 
 ```java
 Table table = new Table(
@@ -60,7 +60,7 @@ System.out.println(formatter.format(table));
 ```
 
                 
-###2. Adjusted Format
+#*2. Adjusted Format*
 You are also able to edit the spacer, leftBracket, the tightBracket, the headerLineChar and the lineSpaceChar.
 If you are wondering what that could be, here is a short explaination:
 
@@ -70,12 +70,12 @@ If you are wondering what that could be, here is a short explaination:
 
 
 
-#####Constructor:
+**Constructor:**
 ```java
 public TableFormatter(String spacer, String columnLeftBracket, String columnRightBracket, char headerValuesSpacerChar, char lineValuesSpaceChar)
 ```
 
-#####Code:
+**Code:**
 ```java
 Table table = new Table(
                 new ColumnEntry("name", "age", "weight"),
@@ -88,14 +88,14 @@ System.out.println(formatter.format(table));
 
 ```
 
-#####Output:
+**Output:**
 
-![](/home/simon/Bilder/2022-03-06 19-07-59.png)
-
-
+![](https://s20.directupload.net/images/220306/wr73kox6.png)
 
 
-##A few last words:
+
+
+#_A few last words:_
 I hope my TableFormatter is useful to you! It would make me really happy and motivate me if you give my project a star...
 
 You are allowed to fork my project as well.
