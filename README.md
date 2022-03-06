@@ -6,7 +6,7 @@ What are you able to do with this lib?
 * **format table to image**
 * **format table to String** 
 
-#Format to Image:
+# Format to Image:
 
 **Code:**
 
