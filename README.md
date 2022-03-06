@@ -31,11 +31,11 @@ BufferedImage img = formatter.formatToImage(table, new TableImageFormat(
 
 
 
-#**Format to String:**
+# **Format to String:**
 
 
 
-#*1. Normal Format*
+# *1. Normal Format*
 
 **Output:**
 ```
@@ -60,7 +60,7 @@ System.out.println(formatter.format(table));
 ```
 
                 
-#*2. Adjusted Format*
+# *2. Adjusted Format*
 You are also able to edit the spacer, leftBracket, the tightBracket, the headerLineChar and the lineSpaceChar.
 If you are wondering what that could be, here is a short explaination:
 
@@ -95,7 +95,7 @@ System.out.println(formatter.format(table));
 
 
 
-#_A few last words:_
+# _A few last words:_
 I hope my TableFormatter is useful to you! It would make me really happy and motivate me if you give my project a star...
 
 You are allowed to fork my project as well.
